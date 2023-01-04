@@ -1,0 +1,31 @@
+{
+  "name": "nodejs-cryptapi",
+  "version": "1.0.0",
+  "description": "CryptAPI's Library for NodeJS",
+  "author": "CryptAPI <info@cryptapi.io>",
+  "license": "MIT",
+  "homepage": "https://cryptapi.io/",
+  "scripts": {
+    "test": "./test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cryptapi/nodejs-cryptapi.git"
+  },
+  "type": "commonjs",
+  "keywords": [
+    "crypto",
+    "cryptocurrency",
+    "payments",
+    "bitcoin",
+    "litecoin",
+    "ethereum",
+    "bitcoin cash",
+    "cryptocurrencies",
+    "polygon",
+    "tron",
+    "binance smart chain",
+    "erc20",
+    "bep20"
+  ]
+}
