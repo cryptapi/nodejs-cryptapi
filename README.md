@@ -6,7 +6,7 @@ NodeJS's implementation of CryptAPI's payment gateway
 ## Install
 
 ```console
-npm install nodejs-cryptapi
+npm install @cryptapi/api
 ```
 
 ## Usage
@@ -14,7 +14,7 @@ npm install nodejs-cryptapi
 ### Importing in your project file
 
 ```js
-const CryptAPI = require('nodejs-cryptapi')
+const CryptAPI = require('@cryptapi/api')
 ```
 
 ### Generating a new Address

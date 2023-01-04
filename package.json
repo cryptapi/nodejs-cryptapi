@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-cryptapi",
+  "name": "@cryptapi/api",
   "version": "1.0.0",
   "description": "CryptAPI's Library for NodeJS",
   "author": "CryptAPI <info@cryptapi.io>",
