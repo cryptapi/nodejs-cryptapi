@@ -22,7 +22,7 @@ const CryptAPI = require('nodejs-cryptapi')
 ```js
 const ca = new CryptAPI(coin, myAddress, callbackUrl, params, cryptapiParams)
 
-const address = ca.getAddress()
+const address = await ca.getAddress()
 ```
 
 Where:
@@ -43,7 +43,7 @@ Where:
 ```js
 const ca = new CryptAPI(coin, myAddress, callbackUrl, params, cryptapiParams)
 
-const data = ca.checkLogs()
+const data = await ca.checkLogs()
 ```
 > Same parameters as before, the ```data``` returned can b e checked here: https://docs.cryptapi.io/#operation/logs
 
@@ -52,11 +52,11 @@ const data = ca.checkLogs()
 ```js
 const ca = new CryptAPI(coin, myAddress, callbackUrl, params, cryptapiParams)
     
-const address = ca.getAddress()
+const address = await ca.getAddress()
 
 // ...
 
-const qrCode = ca.getQrcode(value, size)
+const qrCode = await ca.getQrcode(value, size)
 ```
 For object creation, same parameters as before. You must first call ``getAddress` as this method requires the payment address to have been created.
 
@@ -70,7 +70,7 @@ For QR Code generation:
 ### Estimating transaction fees
 
 ```js
-const fees = CryptAPI.getEstimate(coin, addresses, priority)
+const fees = await CryptAPI.getEstimate(coin, addresses, priority)
 ```
 Where: 
 * ``coin`` is the coin you wish to check, from CryptAPI's supported currencies (e.g 'btc', 'eth', 'erc20_usdt', ...)
@@ -82,7 +82,7 @@ Where:
 ### Converting between coins and fiat
 
 ```js
-const conversion = CryptAPI.getConvert(coin, value, from)
+const conversion = await CryptAPI.getConvert(coin, value, from)
 ```
 Where:
 * ``coin`` the target currency to convert to, from CryptAPI's supported currencies (e.g 'btc', 'eth', 'erc20_usdt', ...)
@@ -93,7 +93,7 @@ Where:
 
 ### Getting supported coins
 ```js
-const supportedCoins = CryptAPI.getSupportedCoins()
+const supportedCoins = await CryptAPI.getSupportedCoins()
 ```
 
 > Response is an array with all support coins.
