@@ -76,14 +76,10 @@ class CryptAPI {
 
         const response = await CryptAPI.#_request(this.coin, 'create', params)
 
-        if (response.status === 'success') {
-            const addressIn = response.address_in
+        const addressIn = response.address_in
 
-            this.paymentAddress = addressIn
-            return addressIn
-        }
-
-        return null
+        this.paymentAddress = addressIn
+        return addressIn
     }
 
     /**
@@ -105,15 +101,9 @@ class CryptAPI {
     
         callbackUrl = encodeURI(callbackUrl.toString())
         
-        const response = await CryptAPI.#_request(this.coin, 'logs', {
+        return await CryptAPI.#_request(this.coin, 'logs', {
             callback: callbackUrl
         })
-
-        if (response.status === 'success') {
-            return response
-        }
-
-        return null
     }
 
     /**
@@ -133,13 +123,7 @@ class CryptAPI {
 
         params['size'] = size
 
-        const response = await CryptAPI.#_request(this.coin, 'qrcode', params)
-
-        if (response.status === 'success') {
-            return response
-        }
-
-        return null
+        return await CryptAPI.#_request(this.coin, 'qrcode', params)
     }
 
     /**
@@ -155,13 +139,7 @@ class CryptAPI {
             params['prices'] = 0
         }
 
-        const response = await this.#_request(coin, 'info', params)
-
-        if (!coin || response.status === 'success') {
-            return response
-        }
-
-        return null
+        return await this.#_request(coin, 'info', params)
     }
 
     /**
@@ -172,16 +150,10 @@ class CryptAPI {
      * @returns {Promise<any|null>}
      */
     static async getEstimate(coin, addresses = 1, priority = 'default') {
-        const response = await CryptAPI.#_request(coin, 'estimate', {
+        return await CryptAPI.#_request(coin, 'estimate', {
             addresses,
             priority,
         })
-
-        if (response.status === 'success') {
-            return response
-        }
-
-        return null
     }
 
     /**
@@ -197,13 +169,7 @@ class CryptAPI {
             from,
         }
 
-        const response = await CryptAPI.#_request(coin, 'convert', params)
-
-        if (response.status === 'success') {
-            return response
-        }
-
-        return null
+        return await CryptAPI.#_request(coin, 'convert', params)
     }
 
     /**
@@ -230,7 +196,14 @@ class CryptAPI {
         }
 
         const response = await fetch(url, fetchParams)
-        return await response.json()
+
+        const response_obj = await response.json()
+
+        if ( response_obj.status === 'error' ) {
+            throw new Error(response_obj.error)
+        }
+
+        return response_obj
     }
 }
 
