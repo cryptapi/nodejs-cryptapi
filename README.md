@@ -14,7 +14,7 @@ npm install @cryptapi/api
 ### Importing in your project file
 
 ```js
-const CryptAPI = require('@cryptapi/api')
+import { CryptAPI } from "@cryptapi/api"
 ```
 
 ### Generating a new Address
@@ -51,12 +51,12 @@ const data = await ca.checkLogs()
 
 ```js
 const ca = new CryptAPI(coin, myAddress, callbackUrl, params, cryptapiParams)
-    
+
 const address = await ca.getAddress()
 
 // ...
 
-const qrCode = await ca.getQrcode(value, size)
+const qrCode = await ca.fetchQRCode(value, size)
 ```
 For object creation, same parameters as before. You must first call ``getAddress` as this method requires the payment address to have been created.
 
@@ -70,9 +70,9 @@ For QR Code generation:
 ### Estimating transaction fees
 
 ```js
-const fees = await CryptAPI.getEstimate(coin, addresses, priority)
+const fees = await CryptAPI.fetchEstimatedFees(coin, addresses, priority)
 ```
-Where: 
+Where:
 * ``coin`` is the coin you wish to check, from CryptAPI's supported currencies (e.g 'btc', 'eth', 'erc20_usdt', ...)
 * ``addresses`` The number of addresses to forward the funds to. Optional, defaults to 1.
 * ``priority`` Confirmation priority, (check [this](https://support.cryptapi.io/article/how-the-priority-parameter-works) article to learn more about it). Optional, defaults to ``default``.
@@ -82,7 +82,7 @@ Where:
 ### Converting between coins and fiat
 
 ```js
-const conversion = await CryptAPI.getConvert(coin, value, from)
+const conversion = await CryptAPI.fetchConversion(coin, value, from)
 ```
 Where:
 * ``coin`` the target currency to convert to, from CryptAPI's supported currencies (e.g 'btc', 'eth', 'erc20_usdt', ...)
@@ -93,14 +93,14 @@ Where:
 
 ### Getting supported coins
 ```js
-const supportedCoins = await CryptAPI.getSupportedCoins()
+const supportedCoins = await CryptAPI.fetchSupportedCoins()
 ```
 
 > Response is an array with all support coins.
 
 ## Help
 
-Need help?  
+Need help?
 Contact us @ https://cryptapi.io/contacts/
 
 
@@ -118,3 +118,6 @@ Contact us @ https://cryptapi.io/contacts/
 #### 1.1.0
 * Minor bugfixes
 * Improve error handling
+
+#### 1.1.1
+* Typescript Migration

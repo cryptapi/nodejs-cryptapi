@@ -105,3 +105,5 @@ dist
 
 .DS_STORE
 .idea/
+
+*.yaml
