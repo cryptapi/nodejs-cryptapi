@@ -1,4 +1,4 @@
-const { CryptAPI } = require("../dist/index");
+import { CryptAPI } from "../dist/index";
 
 const callbackUrl =
   "https://webhook.site/fc6e4031-66e7-45ef-9b9c-b6101958478dsa1";
@@ -10,11 +10,13 @@ test("Test requesting service info", async () => {
 
 test("Test requesting coin pricing", async () => {
   const cryptApi = await CryptAPI.fetchServiceInfo(true);
+
   expect(cryptApi).toBeTruthy();
 });
 
 test("Test requesting supported cryptocurrencies", async () => {
   const r = await CryptAPI.fetchSupportedCoins();
+
   expect(r).toBeTruthy();
 });
 
@@ -31,7 +33,7 @@ test("Test generating address", async () => {
       convert: 1,
     },
   );
-  const address = await r.getAddress();
+  const address = await r.createAddress();
   expect(typeof address).toBe("string");
 });
 
@@ -65,7 +67,7 @@ test("Test fetching QRCode", async () => {
     },
   );
 
-  await ca.getAddress();
+  await ca.createAddress();
   const qrCode = await ca.fetchQRCode(1, 300);
   expect(qrCode !== null).toBe(true);
 });

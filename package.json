@@ -1,10 +1,10 @@
 {
-  "name": "@cryptapi/api",
-  "version": "1.1.1",
+  "name": "@samocodes/cryptapi",
+  "version": "1.0.0",
   "description": "CryptAPI's Library for NodeJS",
-  "author": "CryptAPI <info@cryptapi.io>",
+  "author": "Samir <samirdiff@proton.me>",
   "license": "MIT",
-  "homepage": "https://cryptapi.io/",
+  "homepage": "https://cryptapi.io",
   "scripts": {
     "test": "jest",
     "build": "tsup",
@@ -15,7 +15,7 @@
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cryptapi/nodejs-cryptapi.git"
+    "url": "https://github.com/samocodes/nodejs-cryptapi.git"
   },
   "type": "commonjs",
   "keywords": [
@@ -38,6 +38,7 @@
     "@types/jest": "^29.5.12",
     "@types/node": "^20.14.2",
     "jest": "^29.7.0",
+    "ts-jest": "^29.1.4",
     "tsup": "^8.1.0",
     "typescript": "^5.4.5"
   }

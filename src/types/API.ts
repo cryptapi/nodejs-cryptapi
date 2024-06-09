@@ -51,18 +51,26 @@ interface FIATCurrency {
   ZAR: number;
 }
 
+export type SupportedCoins = {
+  [key in Tickers]: ServiceInformationProperties<false>['ticker'];
+} & {
+    [key in TickersWithChild]: {
+      [nestedKey in TickersWithChild]: ServiceInformationProperties<false>['ticker'];
+    };
+  };
+
 export type ServiceInformation<Prices extends boolean> = {
   fee_tiers: {
     minimum: string;
     fee: string;
   }[];
 } & {
-  [key in Tickers]: ServiceInformationProperties<Prices>;
-} & {
-  [key in TickersWithChild]: {
-    [nestedKey in TickersWithChild]: ServiceInformationProperties<Prices>;
+    [key in Tickers]: ServiceInformationProperties<Prices>;
+  } & {
+    [key in TickersWithChild]: {
+      [nestedKey in TickersWithChild]: ServiceInformationProperties<Prices>;
+    };
   };
-};
 
 type ServiceInformationProperties<Prices extends boolean> = {
   coin: string;
@@ -132,4 +140,13 @@ export interface SuccessResp {
 export interface ErrorResp {
   status: "error";
   error: string;
+}
+
+
+export interface CryptAPIParams {
+  multi_chain?: 1 | 0;
+  multi_token?: 1 | 0;
+  convert?: 1 | 0;
+  post?: 1 | 0;
+  json?: 1 | 0;
 }
