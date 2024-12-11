@@ -118,3 +118,6 @@ Contact us @ https://cryptapi.io/contacts/
 #### 1.1.0
 * Minor bugfixes
 * Improve error handling
+
+#### 1.1.1
+* Minor improvements

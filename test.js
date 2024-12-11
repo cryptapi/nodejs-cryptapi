@@ -1,7 +1,7 @@
 const CryptAPI = require('./index')
 const test = require('node:test')
 
-const callbackUrl = 'https://webhook.site/fc6e4031-66e7-45ef-9b9c-b6101958478dsa1'
+const callbackUrl = 'https://webhook.site/58abc808-8bf6-4dad-8097-7bc364915f46'
 
 test('Test requesting service info', async (t) => {
     const info = await CryptAPI.getInfo()
@@ -10,7 +10,7 @@ test('Test requesting service info', async (t) => {
 })
 
 test('Test requesting coin info', async (t) => {
-    const info = await CryptAPI.getInfo('btc')
+    const info = await CryptAPI.getInfo('sol_sol')
     console.log(info)
     if (info === null) throw new Error('fail')
 })
@@ -22,34 +22,32 @@ test('Test requesting supported cryptocurrencies', async (t) => {
 })
 
 test('Test generating address', async (t) => {
-    const ca = new CryptAPI('polygon_usdt', '0xA6B78B56ee062185E405a1DDDD18cE8fcBC4395d', callbackUrl, {
-        order_id: 12345,
+    const ca = new CryptAPI('sol_sol', 'DSo1MN64SWBCNR7dQKP2bkQnXMhXeFYFSqgJAMQL9kw5', callbackUrl, {
+        order_id: 123457,
     }, {
-        multi_chain: 1,
+        multi_token: 1,
         convert: 1
     })
 
     const address = await ca.getAddress()
-    console.log(address)
     if (address === null) throw new Error('fail')
 })
 
 test('Test getting logs', async (t) => {
-    const ca = new CryptAPI('polygon_matic', '0xA6B78B56ee062185E405a1DDDD18cE8fcBC4395d', callbackUrl, {
+    const ca = new CryptAPI('polygon_pol', '0xA6B78B56ee062185E405a1DDDD18cE8fcBC4395d', callbackUrl, {
         order_id: 12345,
     }, {
         convert: 1,
-        multi_chain: 1,
+        multi_token: 1,
     })
 
     const logs = await ca.checkLogs()
-    console.log(logs)
     if (logs === null) throw new Error('fail')
 })
 
 
 test('Test getting QrCode', async (t) => {
-    const ca = new CryptAPI('polygon_matic', '0xA6B78B56ee062185E405a1DDDD18cE8fcBC4395d', callbackUrl, {}, {
+    const ca = new CryptAPI('polygon_pol', '0xA6B78B56ee062185E405a1DDDD18cE8fcBC4395d', callbackUrl, {}, {
         convert: 1,
         multi_chain: 1,
     })
@@ -65,13 +63,13 @@ test('Test getting QrCode', async (t) => {
 })
 
 test('Test getting getEstimate', async (t) => {
-    const estimate = await CryptAPI.getEstimate('polygon_matic',1, 'default')
+    const estimate = await CryptAPI.getEstimate('polygon_pol',1, 'default')
     console.log(estimate)
     if (estimate === null) throw new Error('fail')
 })
 
 test('Test getting getConvert', async (t) => {
-    const convert = await CryptAPI.getConvert('polygon_matic', 300,'USD')
+    const convert = await CryptAPI.getConvert('polygon_pol', 300,'USD')
     console.log(convert)
     if (convert === null) throw new Error('fail')
 })

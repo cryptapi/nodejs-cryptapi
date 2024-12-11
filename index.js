@@ -6,6 +6,12 @@ class CryptAPI {
     static #baseURL = 'https://api.cryptapi.io'
 
     constructor(coin, ownAddress, callbackUrl, parameters = {}, caParams = {}) {
+        if (!coin || !ownAddress || !callbackUrl) {
+            throw new Error('Missing required parameters')
+        }
+
+        coin = coin.replace('/', '_')
+
         CryptAPI.getSupportedCoins().then(validCoins => {
             if (!validCoins.hasOwnProperty(coin)) {
                 throw new Error('The cryptocurrency/token requested is not supported.')
@@ -64,11 +70,11 @@ class CryptAPI {
 
         let callbackUrl = new URL(this.callbackUrl)
         const parameters = this.parameters
-    
+
         if (Object.entries(parameters).length > 0) {
             Object.entries(parameters).forEach(([k, v]) => callbackUrl.searchParams.append(k, v))
         }
-        
+
         let params = {...this.caParams, ...{
                 callback: encodeURI(callbackUrl.toString()),
                 address: this.ownAddress,
@@ -94,13 +100,13 @@ class CryptAPI {
 
         let callbackUrl = new URL(this.callbackUrl)
         const parameters = this.parameters
-    
+
         if (Object.entries(parameters).length > 0) {
             Object.entries(parameters).forEach(([k, v]) => callbackUrl.searchParams.append(k, v))
         }
-    
+
         callbackUrl = encodeURI(callbackUrl.toString())
-        
+
         return await CryptAPI.#_request(this.coin, 'logs', {
             callback: callbackUrl
         })
@@ -185,7 +191,6 @@ class CryptAPI {
         if (params) {
             Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
         }
-        
 
         const fetchParams = {
             method: 'GET',
